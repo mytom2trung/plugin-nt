@@ -2,7 +2,7 @@ var __DEFINE_PACKAGE__ = (function (t) {
   "use strict";
   const n = "nettruyen",
     v = "Net Truyen",
-    a = "0.1.6",
+    a = "0.1.8",
     o = "Plugin nguồn Net Truyen",
     c = "deptrai",
     e = "//m.ophimne.xyz",
@@ -24,7 +24,7 @@ var __DEFINE_PACKAGE__ = (function (t) {
     isNSFW: !1,
     language: "vi",
     support: !0,
-    updatedAt: 1699540999181,
+    updatedAt: 1700038369339,
   });
   return (
     (t.meta = f),
