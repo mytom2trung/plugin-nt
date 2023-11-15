@@ -2,10 +2,10 @@ var __DEFINE_PACKAGE__ = (function (t) {
   "use strict";
   const n = "nettruyen",
     v = "Net Truyen",
-    a = "0.1.2",
+    a = "0.1.6",
     o = "Plugin nguồn Net Truyen",
-    c = "Tachibana Shin <tachibshin@duck.com>",
-    e = "/",
+    c = "deptrai",
+    e = "//m.ophimne.xyz",
     M = [];
   for (let A = 0; A < 256; ++A) M.push((A + 256).toString(16).slice(1));
   typeof crypto < "u" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
@@ -24,7 +24,7 @@ var __DEFINE_PACKAGE__ = (function (t) {
     isNSFW: !1,
     language: "vi",
     support: !0,
-    updatedAt: 1698749694370,
+    updatedAt: 1699540999181,
   });
   return (
     (t.meta = f),

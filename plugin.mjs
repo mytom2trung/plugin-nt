@@ -1,24 +1,24 @@
-var wt = Object.defineProperty,
-  Pt = Object.defineProperties;
-var Ot = Object.getOwnPropertyDescriptors;
-var nt = Object.getOwnPropertySymbols;
-var Mt = Object.prototype.hasOwnProperty,
-  St = Object.prototype.propertyIsEnumerable;
-var Y = (v, i, m) =>
-    i in v
-      ? wt(v, i, { enumerable: !0, configurable: !0, writable: !0, value: m })
-      : (v[i] = m),
-  U = (v, i) => {
-    for (var m in i || (i = {})) Mt.call(i, m) && Y(v, m, i[m]);
-    if (nt) for (var m of nt(i)) St.call(i, m) && Y(v, m, i[m]);
-    return v;
-  },
-  at = (v, i) => Pt(v, Ot(i));
-var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
-(function () {
+var __DEFINE_API__ = (function (l) {
   "use strict";
-  const v = [];
-  for (let t = 0; t < 256; ++t) v.push((t + 256).toString(16).slice(1));
+  var Ot = Object.defineProperty,
+    St = Object.defineProperties;
+  var Mt = Object.getOwnPropertyDescriptors;
+  var rt = Object.getOwnPropertySymbols;
+  var Nt = Object.prototype.hasOwnProperty,
+    Dt = Object.prototype.propertyIsEnumerable;
+  var Q = (l, d, i) =>
+      d in l
+        ? Ot(l, d, { enumerable: !0, configurable: !0, writable: !0, value: i })
+        : (l[d] = i),
+    $ = (l, d) => {
+      for (var i in d || (d = {})) Nt.call(d, i) && Q(l, i, d[i]);
+      if (rt) for (var i of rt(d)) Dt.call(d, i) && Q(l, i, d[i]);
+      return l;
+    },
+    ot = (l, d) => St(l, Mt(d));
+  var Z = (l, d, i) => (Q(l, typeof d != "symbol" ? d + "" : d, i), i);
+  const d = [];
+  for (let t = 0; t < 256; ++t) d.push((t + 256).toString(16).slice(1));
   typeof crypto < "u" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
   function i(t) {
     try {
@@ -28,12 +28,12 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
       return t;
     }
   }
-  function m(t, e) {
+  function S(t, e) {
     const n = i(t.attr("href")),
       a = t.text().trim();
     return { path: n, name: e ? e(a) : a };
   }
-  function K(t) {
+  function B(t) {
     t = t.trim().toLowerCase().replace(".", "");
     const e = parseFloat(t);
     if (Number.isNaN(e)) return null;
@@ -48,7 +48,7 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
         return e;
     }
   }
-  function B(t, e) {
+  function G(t, e) {
     return (
       (t = t.trim().toLowerCase()),
       t.endsWith("giây trước")
@@ -66,11 +66,11 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
         : new Date(
             t.replace(
               /^(\d{1,2}):(\d{1,2}) (\d{1,2})\/(\d{1,2})(\/\d{2,4})?$/,
-              (n, a, r, o, c, s) => {
-                var d;
-                return `${a}:${r}:00 ${c}/${o}/${
-                  (d = s == null ? void 0 : s.slice(1)) != null
-                    ? d
+              (n, a, r, c, o, s) => {
+                var m;
+                return `${a}:${r}:00 ${o}/${c}/${
+                  (m = s == null ? void 0 : s.slice(1)) != null
+                    ? m
                     : new Date(e).getFullYear()
                 }`;
               }
@@ -81,67 +81,74 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
           ).getTime()
     );
   }
-  const rt = /^Chương|Chapter|Chap\.?\s+/i;
-  function N(t) {
-    return t.replace(rt, "").trim();
+  const ct = /^Chương|Chapter|Chap\.?\s+/i;
+  function D(t) {
+    return t.replace(ct, "").trim();
   }
-  function Q(t, e = !0) {
+  function tt(t, e = !0) {
     const { pathname: n, search: a } = new URL(t, "http://localhost");
     return (
       (!n || n === "/" || n === "/index" || n === "/index.html") && (!e || !a)
     );
   }
-  function E(t) {
-    return t.startsWith("http://") ? `https${t.slice(4)}` : t;
+  function W(t) {
+    return t.startsWith("http://")
+      ? `https${t.slice(4)}`
+      : t.startsWith("://")
+      ? `https${t}`
+      : t;
   }
-  function ct(t) {
+  function st(t) {
     return Object.assign(self, { __DEFINE_API__: t }), t;
   }
-  function ot(t) {
+  function it(t) {
     return Object.assign(self, { __DEFINE_PACKAGE__: t }), t;
   }
   const _ = "https://www.nettruyenus.com";
-  function G(t, e) {
+  let q;
+  function k(t, e) {
     return AppInfo.extension
       ? `${t}#nettruyen_extra`
+      : AppInfo.mode === "capacitor"
+      ? `${t}#${q != null ? q : (q = JSON.stringify(L))}`
       : `https://mangahay.deno.dev/?url=${encodeURIComponent(
           t.slice(t.indexOf(".") + 1).split("/", 1)[0] ===
             "googleusercontent.com"
             ? t
-            : `https://mp-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=604800&url=${encodeURIComponent(
+            : `https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&resize_h=0&rewriteMime=image%2F*&url=${encodeURIComponent(
                 t
               )}`
         )}&headers=${encodeURIComponent(JSON.stringify(e))}`;
   }
-  const x = ot({
+  const x = it({
     id: "nettruyen",
     name: "Net Truyen",
     favicon:
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAKpUExURa+WENi3ANKxAdOyAdS0BM+tALaqZv7////++LanVdKvANOzBNGxAdm4AK+VBM2yDf/iAf3bA//cA/7bBP/jANGzDNjY2/////n8/8a1Uv/cAP7cBv3aA//jA9CzAsqqEf/XBfrPB/vRBvzSCvfNAL2vavv9/8SwUv7RAPrRCvnPBv/YB82qBcqoFP/UCfrNC/zOC//VCtKvDtnY1MOtUP/OAPvODv/VC82oCcmlF//QDvnJD/rKD/vLEPvLE/fFAMCtZvj+/8SsUP7KAfnKEvjID//QEMylDMihG//LEvfEFPjFFPnGFPTCEvfFFP/LE9SqEdLV4cqxXPvEBPjFF//MFMuhEMeeH/7GGPXAGf/HGbOOGd+vGP3GHfa8B7mpdMCpYvvACfbBHP/HGsmdFMWaIvzBHfO7HvO7IP2/FLSYTLeaSfy+FfzBHs6iJp6AL//DGvO6H/O6Hv3CH8iZGcSWJvu8I/K2JPK3Jva1FsmqXr+7sOOnFPi8J/C0ItSfHPa5JPO2I/K2I/u9JcaVHcOSKvm3KPCxKfGyK/WxHsWhVeXt/8KbRfi0Ifa2KvGxKfKyKfCxKPq4KsWRIcGPLveyLe6tLu+uMPStI76aVf3//8e8pt+dHvSxMe6sLfCuLvCuLfizL8SOJcCMMfauMu2oMu6pNPKoKL6ZWvz//+3w9r6TSPWrLO2pM++pMu6pMu2oMfavM8KKKb+JNvOpN+qkN+umOu+jLr6ZYPf7/7+zoN2VJvCqPOulN+ylN/SrOcGHLsCEL/qoNPGiM/GjNfahKb2UXPf9/+jt87mJRPikLvKjM/qoNcaFKq2JWsKSUr+RU8CSVb6MSraefv79+8W6q7iISMGTVb6QU8OTU6iDUPX5/u/1/fD2/fj6/v///vz9/vD1/fP3/cP3IHIAAAABYktHRBcL1piPAAAAB3RJTUUH5wkSBwYgWO7tNAAAARtJREFUGNMBEAHv/gAAAQIDBAUGBwgHCQoLDA0OAA8QERITFBUWFxgZGhscHR4AHyAhIiIjJCUHJicoKSorLAAtLi8wMC8xMjMXNDU2Lzc4ADk6Ozw8PT4/QEFCQ0RFRkcASElKS0xNTk9QUVJTVEpVVgBXWFlZWltcXV5fYGFiWWNkAGVmZ2hpamtsbW5vcHFyc3QAdXZ3eHl6e3x9fn+AgYKDhACFhoeIiYqLjI2Ijo+QkZKTAJSVlpeYmZqbnJ2en6CeoaIAo6SlpqeoqaqrrK2ur7CxsgCztLW2t7i5F7q7vL2+tb/AAMHCw8TFxscXyMnKxMvDzM0Azs/Q0dLTB9QX1dbX0NjZ2gDb3N3d3N4XF9/g3d3d3eHinyRwGnuYBAsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDktMThUMDc6MDY6MzIrMDA6MDB2b2K2AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA5LTE4VDA3OjA2OjMyKzAwOjAwBzLaCgAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wOS0xOFQwNzowNjozMiswMDowMFAn+9UAAAAASUVORK5CYII=",
-    version: "0.1.2",
+    version: "0.1.6",
     description: "Plugin nguồn Net Truyen",
     author: "Tachibana Shin <tachibshin@duck.com>",
     homepage: "https://github.com/manga-raiku/raiku-plugin-nettruyen",
     isNSFW: !1,
     language: "vi",
     support: !0,
-    updatedAt: 1698749694409,
+    updatedAt: 1699540999145,
   });
-  function q(t) {
+  function J(t) {
     return Object.fromEntries(
       new URLSearchParams(t.slice((t.indexOf("?") >>> 0) + 1)).entries()
     );
   }
-  function Z(t) {
+  function et(t) {
     const e = t.indexOf("/tim-truyen/") + 12;
     return t
       .slice(e, t.indexOf("?", e) >>> 0)
       .replace(/\/$/, "")
       .replace(/\/$/, "_");
   }
-  function R(t) {
+  function F(t) {
     var e, n, a;
-    return E(
+    return W(
       (a =
         (n = (e = t.attr("data-src")) != null ? e : t.attr("data-original")) !=
         null
@@ -151,14 +158,14 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
         : t.attr("src")
     );
   }
-  function j(t) {
+  function V(t) {
     const e = t.indexOf("/truyen-tranh/") + 14;
     return t
       .slice(e, t.indexOf("?", e) >>> 0)
       .replace(/\/$/, "")
       .replace(/\/$/, "_");
   }
-  function b(t) {
+  function E(t) {
     const e = t.indexOf("/truyen-tranh/") + 14,
       n = t.slice(e, t.indexOf("/", e)),
       a = t
@@ -170,102 +177,102 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
         .replace(/\//g, "-i");
     return { comic: n, chap: a };
   }
-  function W(t, e, n) {
+  function H(t, e, n) {
     return t(e.toArray().find((a) => !!t(a).text().trim().startsWith(n)))
       .text()
       .trim()
       .slice(n.length)
       .trim();
   }
-  function J(t, e, n) {
-    const a = R(e.find("img")),
+  function z(t, e, n) {
+    const a = F(e.find("img")),
       r = {
         name: "comic",
-        params: { sourceId: x.id, comic: j(i(e.find("a").attr("href"))) },
+        params: { sourceId: x.id, comic: V(i(e.find("a").attr("href"))) },
       },
-      o = e.find("h3").text().trim(),
-      c = e.find(".message_main p"),
-      s = W(t, c, "Tên khác:"),
-      d = W(t, c, "Thể loại:")
+      c = e.find("h3").text().trim(),
+      o = e.find(".message_main p"),
+      s = H(t, o, "Tên khác:"),
+      m = H(t, o, "Thể loại:")
         .split(",")
         .map((p) => p.trim())
         .filter(Boolean),
-      l = W(t, c, "Tình trạng:"),
-      h = W(t, c, "Tác giả:"),
-      A = e.find(".box_text").text(),
+      h = H(t, o, "Tình trạng:"),
+      f = H(t, o, "Tác giả:"),
+      v = e.find(".box_text").text(),
       I = e
         .find("h3 + a, .chapter a")
         .toArray()
         .map((p) => {
           const w = t(p),
-            D = m(w),
+            U = S(w),
             M = w.next(),
-            L = {
+            R = {
               name: "comic chap",
-              params: U({ sourceId: x.id }, b(D.path)),
+              params: $({ sourceId: x.id }, E(U.path)),
             };
           return {
             id: parseInt(w.attr("href").match(/(\d+)\/?$/)[1]) + "",
-            route: L,
-            name: N(D.name),
-            updated_at: M.is(".time") && M.text() ? B(M.text(), n) : null,
+            route: R,
+            name: D(U.name),
+            updated_at: M.is(".time") && M.text() ? G(M.text(), n) : null,
             views: null,
           };
         }),
-      [g, f, u] = e
+      [g, A, u] = e
         .find(".pull-left")
         .text()
         .trim()
         .split(" ")
         .filter(Boolean)
-        .map((p) => K(p)),
+        .map((p) => B(p)),
       y = t(".icon.icon-hot").length > 0 ? "Hot" : null;
     return {
       image: a,
       route: r,
-      name: o,
+      name: c,
       othername: s,
-      tags: d,
-      status: l,
-      author: h,
-      description: A,
+      tags: m,
+      status: h,
+      author: f,
+      description: v,
       last_chapters: I,
       views: g,
-      comments: f,
+      comments: A,
       likes: u,
       label: y,
     };
   }
-  function V(t, e) {
+  function Y(t, e) {
     var g;
     const n = parseDom(t),
       a = n("#ctl00_mainContent_ctl00_divBasicFilter > h1 > strong")
         .text()
         .trim(),
       r = n("#ctl00_mainContent_ctl00_divDescription").text(),
-      o = {
+      c = {
         type: "Thể loại",
         select: n("#ctl00_divRight > div > div > ul > li > a")
           .toArray()
-          .map((f) => {
-            const u = n(f),
+          .map((A) => {
+            const u = n(A),
               y = i(u.attr("href")),
               p = {
                 name: "genre",
-                params: { sourceId: x.id, type: Z(y) },
-                query: q(y),
+                params: { sourceId: x.id, type: et(y) },
+                query: J(y),
               },
               w = u.text();
             return { route: p, name: w };
           }),
       },
-      c = {
+      o = {
         type: "Trạng thái",
         key: "status",
         items: n("#ctl00_mainContent_ctl00_ulStatus a")
           .toArray()
-          .map((f) => {
-            const { name: u, path: y } = m(n(f)),
+          .map((A) => {
+            const { name: u, path: y } = S(n(A)),
               p = new URL(y, "http://localhost").searchParams.get("status");
             return { name: u, value: p };
           }),
@@ -275,21 +282,21 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
         key: "sort",
         items: n("#ctl00_mainContent_ctl00_divSort a")
           .toArray()
-          .map((f) => {
-            const { name: u, path: y } = m(n(f)),
+          .map((A) => {
+            const { name: u, path: y } = S(n(A)),
               p = new URL(y, "http://localhost").searchParams.get("sort");
             return { name: u, value: p };
           }),
       },
-      d = [o, c, s],
-      l = n("#ctl00_divCenter > div.Module.Module-170 .item, .items .item")
+      m = [c, o, s],
+      h = n("#ctl00_divCenter > div.Module.Module-170 .item, .items .item")
         .toArray()
-        .map((f) => J(n, n(f), e)),
-      h = parseInt(
+        .map((A) => z(n, n(A), e)),
+      f = parseInt(
         n("#ctl00_mainContent_ctl01_divPager .active").text().trim()
       ),
-      A = Number.isNaN(h) ? 1 : h,
-      I = h
+      v = Number.isNaN(f) ? 1 : f,
+      I = f
         ? parseInt(
             (g = new URL(
               n("#ctl00_mainContent_ctl01_divPager a").last().attr("href"),
@@ -302,17 +309,17 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
     return {
       name: a,
       description: r,
-      filters: d,
-      items: l,
-      curPage: A,
+      filters: m,
+      items: h,
+      curPage: v,
       maxPage: I,
     };
   }
-  async function tt(t, e, n) {
+  async function nt(t, e, n) {
     t.endsWith("/") && (t = t.slice(0, -1));
     const a = new URL(t, "http://localhost");
     a.searchParams.set("page", e + "");
-    for (const o in n) a.searchParams.set(o, n[o] + "");
+    for (const c in n) a.searchParams.set(c, n[c] + "");
     const { data: r } = await get({
       url: `${_}/${a.pathname}?${a.searchParams + ""}`,
       method: void 0,
@@ -323,62 +330,62 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
       referrerPolicy: void 0,
       window: void 0,
     });
-    return V(r, Date.now());
+    return Y(r, Date.now());
   }
-  async function st(t) {
+  async function mt(t) {
     const { data: e } = await get({
       url: `${_}/Comic/Services/ComicService.asmx/ProcessChapterList?comicId=${t}`,
     });
     return JSON.parse(e).chapters.map((n) => {
       const a = {
         name: "comic chap",
-        params: U({ sourceId: x.id }, b(i(n.url))),
+        params: $({ sourceId: x.id }, E(i(n.url))),
       };
       return {
         id: n.chapterId + "",
-        name: N(n.name),
+        name: D(n.name),
         route: a,
         updated_at: null,
         views: null,
       };
     });
   }
-  function it(t, e) {
+  function dt(t, e) {
     const n = parseDom(t),
       a = n("#ctl00_divAlt1 .item")
         .toArray()
-        .map((c) => J(n, n(c), e)),
+        .map((o) => z(n, n(o), e)),
       r = n("#ctl00_divCenter .item")
         .toArray()
-        .map((c) => J(n, n(c), e)),
-      o = n("#topMonth li")
+        .map((o) => z(n, n(o), e)),
+      c = n("#topMonth li")
         .toArray()
-        .map((c) => {
-          const s = n(c),
-            d = R(s.find("img")),
-            l = {
+        .map((o) => {
+          const s = n(o),
+            m = F(s.find("img")),
+            h = {
               name: "comic",
               params: { sourceId: x.id, comic: i(s.find("a").attr("href")) },
             },
-            h = s.find("h3").text().trim(),
-            { path: A, name: I } = m(s.find(".chapter a")),
+            f = s.find("h3").text().trim(),
+            { path: v, name: I } = S(s.find(".chapter a")),
             g = {
               route: {
                 name: "comic chap",
-                params: U({ sourceId: x.id }, b(A)),
+                params: $({ sourceId: x.id }, E(v)),
               },
-              name: N(I),
-              updated_at: K(s.find(".chapter .view").text().trim()),
+              name: D(I),
+              updated_at: B(s.find(".chapter .view").text().trim()),
             };
-          return { image: d, route: l, name: h, last_chapter: g };
+          return { image: m, route: h, name: f, last_chapter: g };
         });
-    return { recommend: a, last_update: r, top: o };
+    return { recommend: a, last_update: r, top: c };
   }
-  async function mt() {
+  async function ut() {
     const [t, e] = await Promise.all([
-      get({ url: _ }).then((n) => it(n.data, Date.now())),
+      get({ url: _ }).then((n) => dt(n.data, Date.now())),
       get({ url: `${_}/tim-truyen?status=-1&sort=13` }).then((n) =>
-        V(n.data, Date.now())
+        Y(n.data, Date.now())
       ),
     ]);
     return {
@@ -387,7 +394,7 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
       last_update: t.last_update,
     };
   }
-  function dt(t) {
+  function pt(t) {
     const e = parseDom(t);
     return e("li")
       .toArray()
@@ -395,205 +402,205 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
         const a = e(n),
           r = {
             name: "comic",
-            params: { sourceId: x.id, comic: j(i(a.find("a").attr("href"))) },
+            params: { sourceId: x.id, comic: V(i(a.find("a").attr("href"))) },
           },
-          o = a.find("h3").text().trim(),
-          c = R(a.find("img")),
+          c = a.find("h3").text().trim(),
+          o = F(a.find("img")),
           s = a.find("h4 i"),
-          d = N(s.first().text()),
-          l = s.length > 2 ? s.eq(1).text().trim() : "",
-          h = s
+          m = D(s.first().text()),
+          h = s.length > 2 ? s.eq(1).text().trim() : "",
+          f = s
             .last()
             .text()
             .split(",")
-            .map((A) => A.trim())
+            .map((v) => v.trim())
             .filter(Boolean);
         return {
           route: r,
-          name: o,
-          image: c,
-          last_chapter: d,
-          othername: l,
-          tags: h,
+          name: c,
+          image: o,
+          last_chapter: m,
+          othername: h,
+          tags: f,
         };
       });
   }
-  async function ut(t, e) {
+  async function lt(t, e) {
     const { data: n } = await get({
       url: `${_}/Comic/Services/SuggestSearch.ashx?q=${encodeURIComponent(
         t
       )}&page=${e}`,
     });
-    return dt(n);
+    return pt(n);
   }
-  async function pt(t, e) {
+  async function ht(t, e) {
     const { data: n } = await get({
       url: `${_}/tim-truyen?keyword=${encodeURIComponent(t)}&page=${e}`,
     });
-    return V(n, Date.now());
+    return Y(n, Date.now());
   }
-  function H(t, e, n) {
-    var A, I;
+  function j(t, e, n) {
+    var v, I;
     const a = parseInt(e.attr("id").match(/\d+/)[0]),
       r =
         (I =
-          (A = e.find(".member > .progress-bar").attr("style")) == null
+          (v = e.find(".member > .progress-bar").attr("style")) == null
             ? void 0
-            : A.match(/width:\s*(\d+)/)) == null
+            : v.match(/width:\s*(\d+)/)) == null
           ? void 0
           : I[1],
-      o = {
-        avatar: R(e.find(".avatar img")),
+      c = {
+        avatar: F(e.find(".avatar img")),
         name: e.find(".authorname").text().trim(),
         level: {
           current: parseInt(e.find(".member > span:eq(0)").attr("data-level")),
           perNext: r ? parseFloat(r) : null,
         },
-        chapter: N(e.find(".cmchapter").text().trim()),
+        chapter: D(e.find(".cmchapter").text().trim()),
       };
-    e.find(".comment-content img").each((g, f) => {
-      const u = t(f);
-      u.attr("src", R(u));
+    e.find(".comment-content img").each((g, A) => {
+      const u = t(A);
+      u.attr("src", F(u));
     });
-    const c = e.find(".comment-content").html(),
+    const o = e.find(".comment-content").html(),
       s = parseInt(e.find(".vote-up-count").text()),
-      d = parseInt(e.find(".vote-down-count").text()),
-      l = B(e.find("abbr:eq(0)").text(), n),
-      h = e
+      m = parseInt(e.find(".vote-down-count").text()),
+      h = G(e.find("abbr:eq(0)").text(), n),
+      f = e
         .find(".item.child")
         .toArray()
-        .map((g) => H(t, e.find(g), n));
+        .map((g) => j(t, e.find(g), n));
     return {
       id: a,
-      author: o,
-      content: c,
+      author: c,
+      content: o,
       like: s,
-      dislike: d,
-      created_at: l,
-      repiles: h,
+      dislike: m,
+      created_at: h,
+      repiles: f,
     };
   }
-  function lt(t, e) {
-    var L, T, F, $;
+  function ft(t, e) {
+    var R, T, K, b;
     const n = parseDom(t),
       a = n("#item-detail"),
       r = a.find("h1").text().trim(),
-      o = parseInt(
-        (T = (L = t.match(/gOpts\.comicId=(\d+)/)) == null ? void 0 : L[1]) !=
+      c = parseInt(
+        (T = (R = t.match(/gOpts\.comicId=(\d+)/)) == null ? void 0 : R[1]) !=
           null
           ? T
           : ""
       ),
-      c = B(a.find("time").text().trim().slice(16, -1), e),
-      s = R(
+      o = G(a.find("time").text().trim().slice(16, -1), e),
+      s = F(
         n("#item-detail > div.detail-info > div > div.col-xs-4.col-image > img")
       ),
-      d = a.find(".othername p:not(.name)").text().trim(),
-      l = a
+      m = a.find(".othername p:not(.name)").text().trim(),
+      h = a
         .find(".author p:not(.name)")
         .find("a")
         .toArray()
         .map((P) => {
-          const { name: C, path: O } = m(n(P)),
-            S = {
+          const { name: C, path: O } = S(n(P)),
+            N = {
               name: "author",
               params: { sourceId: x.id, type: "" },
-              query: q(O),
+              query: J(O),
             };
-          return { name: C, route: S };
+          return { name: C, route: N };
         }),
-      h = a.find(".status p:not(.name)").text().trim(),
-      A = a
+      f = a.find(".status p:not(.name)").text().trim(),
+      v = a
         .find(".kind p:not(.name)")
         .find("a")
         .toArray()
         .map((P) => {
-          const { name: C, path: O } = m(n(P)),
-            S = {
+          const { name: C, path: O } = S(n(P)),
+            N = {
               name: "genre",
-              params: { sourceId: x.id, type: Z(O) },
-              query: q(O),
+              params: { sourceId: x.id, type: et(O) },
+              query: J(O),
             };
-          return { name: C, route: S };
+          return { name: C, route: N };
         }),
-      I = K(
+      I = B(
         a.find(".kind").next().find("p:not(.name)").text().replace(/\./g, "")
       ),
       g = a.find("span[itemprop=aggregateRating]"),
-      f = {
+      A = {
         cur: parseFloat(g.find("[itemprop=ratingValue]").text()),
         max: parseFloat(g.find("[itemprop=bestRating]").text()),
         count: parseInt(g.find("[itemprop=ratingCount]").text()),
       },
-      u = K(n(".follow b").text()),
+      u = B(n(".follow b").text()),
       y = n(".detail-content p").text(),
       p = n("#nt_listchapter .chapter")
         .toArray()
         .map((P) => {
           const C = n(P),
-            { path: O, name: S } = m(C.find("a")),
-            z = { name: "comic chap", params: U({ sourceId: x.id }, b(O)) },
-            It = parseInt(C.find("a").attr("data-id")) + "",
-            Ct = B(C.next().text(), e) || null,
-            _t = K(C.next().next().text().trim());
-          return { id: It, route: z, name: N(S), updated_at: Ct, views: _t };
+            { path: O, name: N } = S(C.find("a")),
+            X = { name: "comic chap", params: $({ sourceId: x.id }, E(O)) },
+            _t = parseInt(C.find("a").attr("data-id")) + "",
+            wt = G(C.next().text(), e) || null,
+            Pt = B(C.next().next().text().trim());
+          return { id: _t, route: X, name: D(N), updated_at: wt, views: Pt };
         }),
       w = n("#nt_comments .comment-list .item")
         .toArray()
-        .map((P) => H(n, n(P), e)),
-      D = parseInt(n(".comment-count").text()),
+        .map((P) => j(n, n(P), e)),
+      U = parseInt(n(".comment-count").text()),
       M =
         parseInt(
-          ($ =
-            (F = n("#ctl00_mainContent_divPager > ul > li:nth-child(14) > a")
+          (b =
+            (K = n("#ctl00_mainContent_divPager > ul > li:nth-child(14) > a")
               .last()
               .attr("href")) == null
               ? void 0
-              : F.slice(1)) != null
-            ? $
+              : K.slice(1)) != null
+            ? b
             : "1"
         ) || 1;
     return {
       name: r,
-      othername: d,
-      manga_id: o + "",
-      updated_at: c,
+      othername: m,
+      manga_id: c + "",
+      updated_at: o,
       image: s,
-      author: l,
-      status: h,
-      genres: A,
+      author: h,
+      status: f,
+      genres: v,
       views: I,
       likes: null,
-      rate: f,
+      rate: A,
       follows: u,
       description: y,
       chapters: p,
       comments: w,
-      comments_count: D,
+      comments_count: U,
       comments_pages: M,
     };
   }
-  async function ht(t) {
+  async function gt(t) {
     const { data: e, url: n } = await get({ url: `${_}/truyen-tranh/${t}` });
-    if (Q(n)) throw new Error("not_found");
-    return lt(e, Date.now());
+    if (tt(n)) throw new Error("not_found");
+    return ft(e, Date.now());
   }
-  function gt(t, e) {
-    var u, y, p, w, D, M, L, T;
+  function At(t, e) {
+    var u, y, p, w, U, M, R, T;
     const n = parseDom(t),
       a = n("#ctl00_Head1 > meta:nth-child(12)").attr("content"),
       r = n("h1").text().split("-").slice(0, -1).join("-").trim(),
-      o = {
+      c = {
         name: "comic",
         params: {
           sourceId: x.id,
-          comic: j(
-            m(n("#ctl00_divCenter > div > div:nth-child(1) > div.top > h1 > a"))
+          comic: V(
+            S(n("#ctl00_divCenter > div > div:nth-child(1) > div.top > h1 > a"))
               .path
           ),
         },
       },
-      c =
+      o =
         parseInt(
           (y = (u = t.match(/gOpts\.comicId=(\d+)/)) == null ? void 0 : u[1]) !=
             null
@@ -608,77 +615,77 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
             ? w
             : ""
         ) + "",
-      d = (D = t.match(/gOpts\.cdn="([^"]+)"/)) == null ? void 0 : D[1],
-      l = (M = t.match(/gOpts\.cdn2="([^"]+)"/)) == null ? void 0 : M[1],
-      h = B(
+      m = (U = t.match(/gOpts\.cdn="([^"]+)"/)) == null ? void 0 : U[1],
+      h = (M = t.match(/gOpts\.cdn2="([^"]+)"/)) == null ? void 0 : M[1],
+      f = G(
         n("#ctl00_divCenter > div > div:nth-child(1) > div.top > i")
           .text()
           .trim()
           .slice(16, -1),
         e
       ),
-      A = n(".reading-detail img")
+      v = n(".reading-detail img")
         .toArray()
-        .map((F) => {
-          const $ = n(F),
-            P = E($.attr("src")),
-            C = $.attr("data-original"),
-            O = C ? E(C) : void 0,
-            S = $.attr("data-cdn"),
-            z = S ? E(S) : void 0;
+        .map((K) => {
+          const b = n(K),
+            P = W(b.attr("src")),
+            C = b.attr("data-original"),
+            O = C ? W(C) : void 0,
+            N = b.attr("data-cdn"),
+            X = N ? W(N) : void 0;
           return {
             src: P.includes("/logos/logo-nettruyen.png") ? O : P,
             original: O,
-            cdn: z,
+            cdn: X,
           };
         }),
       I = n("#nt_comments .comment-list .item")
         .toArray()
-        .map((F) => H(n, n(F), e)),
+        .map((K) => j(n, n(K), e)),
       g = parseInt(n(".comment-count").text()),
-      f =
+      A =
         parseInt(
           (T =
-            (L = n("#ctl00_mainContent_divPager > ul > li:nth-child(14) > a")
+            (R = n("#ctl00_mainContent_divPager > ul > li:nth-child(14) > a")
               .last()
               .attr("href")) == null
               ? void 0
-              : L.slice(1)) != null
+              : R.slice(1)) != null
             ? T
             : "1"
         ) || 1;
     return {
       name: r,
       image: a,
-      manga_id: c,
-      path_manga: o,
+      manga_id: o,
+      path_manga: c,
       ep_id: s,
-      updated_at: h,
-      pages: A,
-      cdn: d,
-      cdn2: l,
+      updated_at: f,
+      pages: v,
+      cdn: m,
+      cdn2: h,
       comments: I,
       comments_count: g,
-      comments_pages: f,
+      comments_pages: A,
     };
   }
-  async function ft(t, e) {
+  async function vt(t, e) {
     const { data: n, url: a } = await get({ url: `${_}/truyen-tranh/${t}` });
-    if (Q(a)) throw new Error("not_found");
-    const r = await gt(n, Date.now());
+    if (tt(a)) throw new Error("not_found");
+    const r = await At(n, Date.now());
     if (!e) {
-      const { data: o } = await get({
+      const { data: c } = await get({
         url: `${_}/Comic/Services/ComicService.asmx/ProcessChapterList?comicId=${r.manga_id}`,
       });
-      return at(U({}, r), {
-        chapters: JSON.parse(o).chapters.map((c) => {
+      return ot($({}, r), {
+        chapters: JSON.parse(c).chapters.map((o) => {
           const s = {
             name: "comic chap",
-            params: U({ sourceId: x.id }, b(c.url)),
+            params: $({ sourceId: x.id }, E(o.url)),
           };
           return {
-            id: c.chapterId + "",
-            name: N(c.name),
+            id: o.chapterId + "",
+            name: D(o.name),
             route: s,
             updated_at: null,
             views: null,
@@ -688,26 +695,26 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
     }
     return r;
   }
-  function At(t, e) {
+  function yt(t, e) {
     const n = parseDom(t);
     return n(".item")
       .toArray()
-      .map((a) => H(n, n(a), e));
+      .map((a) => j(n, n(a), e));
   }
-  async function vt(t, e, n = -1, a = 0, r, o) {
-    const { data: c } = await get({
+  async function xt(t, e, n = -1, a = 0, r, c) {
+    const { data: o } = await get({
         url: `https://www.nettruyenmax.com/Comic/Services/CommentService.asmx/List?comicId=${t}&orderBy=${
           e ? 5 : 0
-        }&chapterId=${n}&parentId=${a}&pageNumber=${r}&token=${o}`,
+        }&chapterId=${n}&parentId=${a}&pageNumber=${r}&token=${c}`,
       }),
-      { commentCount: s, pager: d, response: l } = JSON.parse(c);
+      { commentCount: s, pager: m, response: h } = JSON.parse(o);
     return {
       comments_count: parseInt(s),
-      comments_pages: parseInt(d.slice(d.indexOf('a href="#') >>> 0, 2)),
-      comments: await At(l, Date.now()),
+      comments_pages: parseInt(m.slice(m.indexOf('a href="#') >>> 0, 2)),
+      comments: await yt(h, Date.now()),
     };
   }
-  const et = [
+  const at = [
       {
         value: "ngay",
         match: "/tim-truyen?status=-1&sort=13",
@@ -724,12 +731,12 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
         name: { "vi-VN": "Tháng", "en-US": "Month" },
       },
     ],
-    k = { referer: "https://www.nettruyenmax.com" },
-    yt = [
+    L = { referer: "https://www.nettruyenmax.com" },
+    It = [
       {
         name: "Server 1",
         has: () => !0,
-        parse: ({ pages: t }) => t.map((e) => G(e.src, k)),
+        parse: ({ pages: t }) => t.map((e) => k(e.src, L)),
       },
       {
         name: "Server 2",
@@ -741,12 +748,12 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
             return ((n = e.original) == null
               ? void 0
               : n.indexOf("focus-opensocial.googleusercontent")) !== -1
-              ? G(decodeURIComponent(e.original.split("&url", 2)[1]), k)
-              : G(
+              ? k(decodeURIComponent(e.original.split("&url", 2)[1]), L)
+              : k(
                   `https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&resize_h=0&rewriteMime=image%2F*&url=${encodeURIComponent(
                     e.original
                   )}`,
-                  k
+                  L
                 );
           });
         },
@@ -754,19 +761,19 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
       {
         name: "Server 3",
         has: (t) => t.cdn !== null,
-        parse: ({ pages: t }) => t.map((e) => G(e.cdn, k)),
+        parse: ({ pages: t }) => t.map((e) => k(e.cdn, L)),
       },
       {
         name: "Server 4",
         has: ({ pages: t, cdn: e, cdn2: n }) => t[0].cdn !== null && !!e && !!n,
         parse: ({ pages: t, cdn: e, cdn2: n }) =>
-          t.map((a) => G(a.cdn.replace(e, n), k)),
+          t.map((a) => k(a.cdn.replace(e, n), L)),
       },
     ];
-  class xt {
+  class Ct {
     constructor() {
-      X(this, "Rankings", et);
-      X(this, "Servers", yt);
+      Z(this, "Rankings", at);
+      Z(this, "Servers", It);
     }
     async setup() {
       AppInfo.extension &&
@@ -774,14 +781,14 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
         await setReferrers({ "#nettruyen": _ }));
     }
     async index() {
-      return mt();
+      return ut();
     }
     async getComic(e) {
-      return ht(e);
+      return gt(e);
     }
     async getComicChapter(e, n, a) {
       const r = n.lastIndexOf("-i") >>> 0;
-      return ft(
+      return vt(
         e.replace(/-\d+$/, "") +
           "/chap-" +
           n.slice(0, r) +
@@ -790,27 +797,32 @@ var X = (v, i, m) => (Y(v, typeof i != "symbol" ? i + "" : i, m), m);
         a
       );
     }
-    async getComicComments(e, n, a = -1, r = 0, o, c) {
-      return vt(e, n, a, r, o, c);
+    async getComicComments(e, n, a = -1, r = 0, c, o) {
+      return xt(e, n, a, r, c, o);
     }
     async getListChapters(e) {
-      return st(e);
+      return mt(e);
     }
     async searchQuickly(e, n) {
-      return ut(e, n);
+      return lt(e, n);
     }
     async search(e, n) {
-      return pt(e, n);
+      return ht(e, n);
     }
     async getRanking(e, n, a) {
-      var o;
-      const r = (o = et.find((c) => c.value === e)) == null ? void 0 : o.match;
+      var c;
+      const r = (c = at.find((o) => o.value === e)) == null ? void 0 : c.match;
       if (!r) throw new Error("not_found");
-      return tt(r, n, a);
+      return nt(r, n, a);
     }
     async getCategory(e, n, a) {
-      return tt(`/tim-truyen/${e}`, n, a);
+      return nt(`/tim-truyen/${e}`, n, a);
     }
   }
-  ct(xt);
-})();
+  return (
+    st(Ct),
+    (l.headersNettruyen = L),
+    Object.defineProperty(l, Symbol.toStringTag, { value: "Module" }),
+    l
+  );
+})({});
