@@ -1,22 +1,22 @@
 var __DEFINE_API__ = (function (l) {
   "use strict";
-  var Ot = Object.defineProperty,
-    St = Object.defineProperties;
-  var Mt = Object.getOwnPropertyDescriptors;
+  var St = Object.defineProperty,
+    Ot = Object.defineProperties;
+  var Nt = Object.getOwnPropertyDescriptors;
   var rt = Object.getOwnPropertySymbols;
-  var Nt = Object.prototype.hasOwnProperty,
-    Dt = Object.prototype.propertyIsEnumerable;
-  var Q = (l, d, i) =>
+  var Dt = Object.prototype.hasOwnProperty,
+    Lt = Object.prototype.propertyIsEnumerable;
+  var Z = (l, d, i) =>
       d in l
-        ? Ot(l, d, { enumerable: !0, configurable: !0, writable: !0, value: i })
+        ? St(l, d, { enumerable: !0, configurable: !0, writable: !0, value: i })
         : (l[d] = i),
-    $ = (l, d) => {
-      for (var i in d || (d = {})) Nt.call(d, i) && Q(l, i, d[i]);
-      if (rt) for (var i of rt(d)) Dt.call(d, i) && Q(l, i, d[i]);
+    F = (l, d) => {
+      for (var i in d || (d = {})) Dt.call(d, i) && Z(l, i, d[i]);
+      if (rt) for (var i of rt(d)) Lt.call(d, i) && Z(l, i, d[i]);
       return l;
     },
-    ot = (l, d) => St(l, Mt(d));
-  var Z = (l, d, i) => (Q(l, typeof d != "symbol" ? d + "" : d, i), i);
+    ot = (l, d) => Ot(l, Nt(d));
+  var J = (l, d, i) => (Z(l, typeof d != "symbol" ? d + "" : d, i), i);
   const d = [];
   for (let t = 0; t < 256; ++t) d.push((t + 256).toString(16).slice(1));
   typeof crypto < "u" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
@@ -33,7 +33,7 @@ var __DEFINE_API__ = (function (l) {
       a = t.text().trim();
     return { path: n, name: e ? e(a) : a };
   }
-  function B(t) {
+  function b(t) {
     t = t.trim().toLowerCase().replace(".", "");
     const e = parseFloat(t);
     if (Number.isNaN(e)) return null;
@@ -48,7 +48,7 @@ var __DEFINE_API__ = (function (l) {
         return e;
     }
   }
-  function G(t, e) {
+  function T(t, e) {
     return (
       (t = t.trim().toLowerCase()),
       t.endsWith("giây trước")
@@ -105,17 +105,17 @@ var __DEFINE_API__ = (function (l) {
     return Object.assign(self, { __DEFINE_PACKAGE__: t }), t;
   }
   const _ = "https://www.nettruyenus.com";
-  let q;
-  function k(t, e) {
+  let V;
+  function B(t, e) {
     return AppInfo.extension
       ? `${t}#nettruyen_extra`
       : AppInfo.mode === "capacitor"
-      ? `${t}#${q != null ? q : (q = JSON.stringify(L))}`
+      ? `${t}#${V != null ? V : (V = JSON.stringify(L))}`
       : `https://mangahay.deno.dev/?url=${encodeURIComponent(
           t.slice(t.indexOf(".") + 1).split("/", 1)[0] ===
             "googleusercontent.com"
             ? t
-            : `https://mp-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=604800&url=${encodeURIComponent(
+            : `https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&resize_h=0&rewriteMime=image%2F*&url=${encodeURIComponent(
                 t
               )}`
         )}&headers=${encodeURIComponent(JSON.stringify(e))}`;
@@ -125,16 +125,17 @@ var __DEFINE_API__ = (function (l) {
     name: "Net Truyen",
     favicon:
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAKpUExURa+WENi3ANKxAdOyAdS0BM+tALaqZv7////++LanVdKvANOzBNGxAdm4AK+VBM2yDf/iAf3bA//cA/7bBP/jANGzDNjY2/////n8/8a1Uv/cAP7cBv3aA//jA9CzAsqqEf/XBfrPB/vRBvzSCvfNAL2vavv9/8SwUv7RAPrRCvnPBv/YB82qBcqoFP/UCfrNC/zOC//VCtKvDtnY1MOtUP/OAPvODv/VC82oCcmlF//QDvnJD/rKD/vLEPvLE/fFAMCtZvj+/8SsUP7KAfnKEvjID//QEMylDMihG//LEvfEFPjFFPnGFPTCEvfFFP/LE9SqEdLV4cqxXPvEBPjFF//MFMuhEMeeH/7GGPXAGf/HGbOOGd+vGP3GHfa8B7mpdMCpYvvACfbBHP/HGsmdFMWaIvzBHfO7HvO7IP2/FLSYTLeaSfy+FfzBHs6iJp6AL//DGvO6H/O6Hv3CH8iZGcSWJvu8I/K2JPK3Jva1FsmqXr+7sOOnFPi8J/C0ItSfHPa5JPO2I/K2I/u9JcaVHcOSKvm3KPCxKfGyK/WxHsWhVeXt/8KbRfi0Ifa2KvGxKfKyKfCxKPq4KsWRIcGPLveyLe6tLu+uMPStI76aVf3//8e8pt+dHvSxMe6sLfCuLvCuLfizL8SOJcCMMfauMu2oMu6pNPKoKL6ZWvz//+3w9r6TSPWrLO2pM++pMu6pMu2oMfavM8KKKb+JNvOpN+qkN+umOu+jLr6ZYPf7/7+zoN2VJvCqPOulN+ylN/SrOcGHLsCEL/qoNPGiM/GjNfahKb2UXPf9/+jt87mJRPikLvKjM/qoNcaFKq2JWsKSUr+RU8CSVb6MSraefv79+8W6q7iISMGTVb6QU8OTU6iDUPX5/u/1/fD2/fj6/v///vz9/vD1/fP3/cP3IHIAAAABYktHRBcL1piPAAAAB3RJTUUH5wkSBwYgWO7tNAAAARtJREFUGNMBEAHv/gAAAQIDBAUGBwgHCQoLDA0OAA8QERITFBUWFxgZGhscHR4AHyAhIiIjJCUHJicoKSorLAAtLi8wMC8xMjMXNDU2Lzc4ADk6Ozw8PT4/QEFCQ0RFRkcASElKS0xNTk9QUVJTVEpVVgBXWFlZWltcXV5fYGFiWWNkAGVmZ2hpamtsbW5vcHFyc3QAdXZ3eHl6e3x9fn+AgYKDhACFhoeIiYqLjI2Ijo+QkZKTAJSVlpeYmZqbnJ2en6CeoaIAo6SlpqeoqaqrrK2ur7CxsgCztLW2t7i5F7q7vL2+tb/AAMHCw8TFxscXyMnKxMvDzM0Azs/Q0dLTB9QX1dbX0NjZ2gDb3N3d3N4XF9/g3d3d3eHinyRwGnuYBAsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDktMThUMDc6MDY6MzIrMDA6MDB2b2K2AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA5LTE4VDA3OjA2OjMyKzAwOjAwBzLaCgAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wOS0xOFQwNzowNjozMiswMDowMFAn+9UAAAAASUVORK5CYII=",
-    version: "0.1.8",
+    version: "0.1.11",
     description: "Plugin nguồn Net Truyen",
-    author: "deptrai",
-    homepage: "//m.ophimne.xyz",
+    author: "animeforyou",
+    homepage: "/",
     isNSFW: !1,
     language: "vi",
     support: !0,
-    updatedAt: 1700038369309,
+    supportGetMode: !0,
+    updatedAt: 1701791345876,
   });
-  function J(t) {
+  function z(t) {
     return Object.fromEntries(
       new URLSearchParams(t.slice((t.indexOf("?") >>> 0) + 1)).entries()
     );
@@ -146,7 +147,7 @@ var __DEFINE_API__ = (function (l) {
       .replace(/\/$/, "")
       .replace(/\/$/, "_");
   }
-  function F(t) {
+  function $(t) {
     var e, n, a;
     return W(
       (a =
@@ -158,16 +159,13 @@ var __DEFINE_API__ = (function (l) {
         : t.attr("src")
     );
   }
-  function V(t) {
+  function H(t) {
     const e = t.indexOf("/truyen-tranh/") + 14;
-    return t
-      .slice(e, t.indexOf("?", e) >>> 0)
-      .replace(/\/$/, "")
-      .replace(/\/$/, "_");
+    return t.slice(e, t.indexOf("?", e) >>> 0).replace(/-\d{4,}$/, "");
   }
-  function E(t) {
+  function k(t) {
     const e = t.indexOf("/truyen-tranh/") + 14,
-      n = t.slice(e, t.indexOf("/", e)),
+      n = t.slice(e, t.indexOf("/", e)).replace(/-\d{4,}$/, ""),
       a = t
         .slice(
           e + n.length + 1,
@@ -177,28 +175,28 @@ var __DEFINE_API__ = (function (l) {
         .replace(/\//g, "-i");
     return { comic: n, chap: a };
   }
-  function H(t, e, n) {
+  function j(t, e, n) {
     return t(e.toArray().find((a) => !!t(a).text().trim().startsWith(n)))
       .text()
       .trim()
       .slice(n.length)
       .trim();
   }
-  function z(t, e, n) {
-    const a = F(e.find("img")),
+  function Y(t, e, n) {
+    const a = $(e.find("img")),
       r = {
         name: "comic",
-        params: { sourceId: x.id, comic: V(i(e.find("a").attr("href"))) },
+        params: { sourceId: x.id, comic: H(i(e.find("a").attr("href"))) },
       },
       c = e.find("h3").text().trim(),
       o = e.find(".message_main p"),
-      s = H(t, o, "Tên khác:"),
-      m = H(t, o, "Thể loại:")
+      s = j(t, o, "Tên khác:"),
+      m = j(t, o, "Thể loại:")
         .split(",")
         .map((p) => p.trim())
         .filter(Boolean),
-      h = H(t, o, "Tình trạng:"),
-      f = H(t, o, "Tác giả:"),
+      h = j(t, o, "Tình trạng:"),
+      g = j(t, o, "Tác giả:"),
       v = e.find(".box_text").text(),
       I = e
         .find("h3 + a, .chapter a")
@@ -206,26 +204,26 @@ var __DEFINE_API__ = (function (l) {
         .map((p) => {
           const w = t(p),
             U = S(w),
-            M = w.next(),
+            O = w.next(),
             R = {
               name: "comic chap",
-              params: $({ sourceId: x.id }, E(U.path)),
+              params: F({ sourceId: x.id }, k(U.path)),
             };
           return {
             id: parseInt(w.attr("href").match(/(\d+)\/?$/)[1]) + "",
             route: R,
             name: D(U.name),
-            updated_at: M.is(".time") && M.text() ? G(M.text(), n) : null,
+            updated_at: O.is(".time") && O.text() ? T(O.text(), n) : null,
             views: null,
           };
         }),
-      [g, A, u] = e
+      [f, A, u] = e
         .find(".pull-left")
         .text()
         .trim()
         .split(" ")
         .filter(Boolean)
-        .map((p) => B(p)),
+        .map((p) => b(p)),
       y = t(".icon.icon-hot").length > 0 ? "Hot" : null;
     return {
       image: a,
@@ -234,17 +232,17 @@ var __DEFINE_API__ = (function (l) {
       othername: s,
       tags: m,
       status: h,
-      author: f,
+      author: g,
       description: v,
       last_chapters: I,
-      views: g,
+      views: f,
       comments: A,
       likes: u,
       label: y,
     };
   }
-  function Y(t, e) {
-    var g;
+  function X(t, e) {
+    var f;
     const n = parseDom(t),
       a = n("#ctl00_mainContent_ctl00_divBasicFilter > h1 > strong")
         .text()
@@ -260,7 +258,7 @@ var __DEFINE_API__ = (function (l) {
               p = {
                 name: "genre",
                 params: { sourceId: x.id, type: et(y) },
-                query: J(y),
+                query: z(y),
               },
               w = u.text();
             return { route: p, name: w };
@@ -291,18 +289,18 @@ var __DEFINE_API__ = (function (l) {
       m = [c, o, s],
       h = n("#ctl00_divCenter > div.Module.Module-170 .item, .items .item")
         .toArray()
-        .map((A) => z(n, n(A), e)),
-      f = parseInt(
+        .map((A) => Y(n, n(A), e)),
+      g = parseInt(
         n("#ctl00_mainContent_ctl01_divPager .active").text().trim()
       ),
-      v = Number.isNaN(f) ? 1 : f,
-      I = f
+      v = Number.isNaN(g) ? 1 : g,
+      I = g
         ? parseInt(
-            (g = new URL(
+            (f = new URL(
               n("#ctl00_mainContent_ctl01_divPager a").last().attr("href"),
               "http://localhost"
             ).searchParams.get("page")) != null
-              ? g
+              ? f
               : "1"
           )
         : 1;
@@ -330,7 +328,7 @@ var __DEFINE_API__ = (function (l) {
       referrerPolicy: void 0,
       window: void 0,
     });
-    return Y(r, Date.now());
+    return X(r, Date.now());
   }
   async function mt(t) {
     const { data: e } = await get({
@@ -339,7 +337,7 @@ var __DEFINE_API__ = (function (l) {
     return JSON.parse(e).chapters.map((n) => {
       const a = {
         name: "comic chap",
-        params: $({ sourceId: x.id }, E(i(n.url))),
+        params: F({ sourceId: x.id }, k(i(n.url))),
       };
       return {
         id: n.chapterId + "",
@@ -354,30 +352,30 @@ var __DEFINE_API__ = (function (l) {
     const n = parseDom(t),
       a = n("#ctl00_divAlt1 .item")
         .toArray()
-        .map((o) => z(n, n(o), e)),
+        .map((o) => Y(n, n(o), e)),
       r = n("#ctl00_divCenter .item")
         .toArray()
-        .map((o) => z(n, n(o), e)),
+        .map((o) => Y(n, n(o), e)),
       c = n("#topMonth li")
         .toArray()
         .map((o) => {
           const s = n(o),
-            m = F(s.find("img")),
+            m = $(s.find("img")),
             h = {
               name: "comic",
-              params: { sourceId: x.id, comic: i(s.find("a").attr("href")) },
+              params: { sourceId: x.id, comic: H(i(s.find("a").attr("href"))) },
             },
-            f = s.find("h3").text().trim(),
+            g = s.find("h3").text().trim(),
             { path: v, name: I } = S(s.find(".chapter a")),
-            g = {
+            f = {
               route: {
                 name: "comic chap",
-                params: $({ sourceId: x.id }, E(v)),
+                params: F({ sourceId: x.id }, k(v)),
               },
               name: D(I),
-              updated_at: B(s.find(".chapter .view").text().trim()),
+              updated_at: b(s.find(".chapter .view").text().trim()),
             };
-          return { image: m, route: h, name: f, last_chapter: g };
+          return { image: m, route: h, name: g, last_chapter: f };
         });
     return { recommend: a, last_update: r, top: c };
   }
@@ -385,7 +383,7 @@ var __DEFINE_API__ = (function (l) {
     const [t, e] = await Promise.all([
       get({ url: _ }).then((n) => dt(n.data, Date.now())),
       get({ url: `${_}/tim-truyen?status=-1&sort=13` }).then((n) =>
-        Y(n.data, Date.now())
+        X(n.data, Date.now())
       ),
     ]);
     return {
@@ -402,14 +400,14 @@ var __DEFINE_API__ = (function (l) {
         const a = e(n),
           r = {
             name: "comic",
-            params: { sourceId: x.id, comic: V(i(a.find("a").attr("href"))) },
+            params: { sourceId: x.id, comic: H(i(a.find("a").attr("href"))) },
           },
           c = a.find("h3").text().trim(),
-          o = F(a.find("img")),
+          o = $(a.find("img")),
           s = a.find("h4 i"),
           m = D(s.first().text()),
           h = s.length > 2 ? s.eq(1).text().trim() : "",
-          f = s
+          g = s
             .last()
             .text()
             .split(",")
@@ -421,7 +419,7 @@ var __DEFINE_API__ = (function (l) {
           image: o,
           last_chapter: m,
           othername: h,
-          tags: f,
+          tags: g,
         };
       });
   }
@@ -437,9 +435,9 @@ var __DEFINE_API__ = (function (l) {
     const { data: n } = await get({
       url: `${_}/tim-truyen?keyword=${encodeURIComponent(t)}&page=${e}`,
     });
-    return Y(n, Date.now());
+    return X(n, Date.now());
   }
-  function j(t, e, n) {
+  function q(t, e, n) {
     var v, I;
     const a = parseInt(e.attr("id").match(/\d+/)[0]),
       r =
@@ -450,7 +448,7 @@ var __DEFINE_API__ = (function (l) {
           ? void 0
           : I[1],
       c = {
-        avatar: F(e.find(".avatar img")),
+        avatar: $(e.find(".avatar img")),
         name: e.find(".authorname").text().trim(),
         level: {
           current: parseInt(e.find(".member > span:eq(0)").attr("data-level")),
@@ -458,18 +456,18 @@ var __DEFINE_API__ = (function (l) {
         },
         chapter: D(e.find(".cmchapter").text().trim()),
       };
-    e.find(".comment-content img").each((g, A) => {
+    e.find(".comment-content img").each((f, A) => {
       const u = t(A);
-      u.attr("src", F(u));
+      u.attr("src", $(u));
     });
     const o = e.find(".comment-content").html(),
       s = parseInt(e.find(".vote-up-count").text()),
       m = parseInt(e.find(".vote-down-count").text()),
-      h = G(e.find("abbr:eq(0)").text(), n),
-      f = e
+      h = T(e.find("abbr:eq(0)").text(), n),
+      g = e
         .find(".item.child")
         .toArray()
-        .map((g) => j(t, e.find(g), n));
+        .map((f) => q(t, e.find(f), n));
     return {
       id: a,
       author: c,
@@ -477,22 +475,22 @@ var __DEFINE_API__ = (function (l) {
       like: s,
       dislike: m,
       created_at: h,
-      repiles: f,
+      repiles: g,
     };
   }
-  function ft(t, e) {
-    var R, T, K, b;
+  function gt(t, e) {
+    var R, E, K, G;
     const n = parseDom(t),
       a = n("#item-detail"),
       r = a.find("h1").text().trim(),
       c = parseInt(
-        (T = (R = t.match(/gOpts\.comicId=(\d+)/)) == null ? void 0 : R[1]) !=
+        (E = (R = t.match(/gOpts\.comicId=(\d+)/)) == null ? void 0 : R[1]) !=
           null
-          ? T
+          ? E
           : ""
       ),
-      o = G(a.find("time").text().trim().slice(16, -1), e),
-      s = F(
+      o = T(a.find("time").text().trim().slice(16, -1), e),
+      s = $(
         n("#item-detail > div.detail-info > div > div.col-xs-4.col-image > img")
       ),
       m = a.find(".othername p:not(.name)").text().trim(),
@@ -501,63 +499,63 @@ var __DEFINE_API__ = (function (l) {
         .find("a")
         .toArray()
         .map((P) => {
-          const { name: C, path: O } = S(n(P)),
+          const { name: C, path: M } = S(n(P)),
             N = {
               name: "author",
               params: { sourceId: x.id, type: "" },
-              query: J(O),
+              query: z(M),
             };
           return { name: C, route: N };
         }),
-      f = a.find(".status p:not(.name)").text().trim(),
+      g = a.find(".status p:not(.name)").text().trim(),
       v = a
         .find(".kind p:not(.name)")
         .find("a")
         .toArray()
         .map((P) => {
-          const { name: C, path: O } = S(n(P)),
+          const { name: C, path: M } = S(n(P)),
             N = {
               name: "genre",
-              params: { sourceId: x.id, type: et(O) },
-              query: J(O),
+              params: { sourceId: x.id, type: et(M) },
+              query: z(M),
             };
           return { name: C, route: N };
         }),
-      I = B(
+      I = b(
         a.find(".kind").next().find("p:not(.name)").text().replace(/\./g, "")
       ),
-      g = a.find("span[itemprop=aggregateRating]"),
+      f = a.find("span[itemprop=aggregateRating]"),
       A = {
-        cur: parseFloat(g.find("[itemprop=ratingValue]").text()),
-        max: parseFloat(g.find("[itemprop=bestRating]").text()),
-        count: parseInt(g.find("[itemprop=ratingCount]").text()),
+        cur: parseFloat(f.find("[itemprop=ratingValue]").text()),
+        max: parseFloat(f.find("[itemprop=bestRating]").text()),
+        count: parseInt(f.find("[itemprop=ratingCount]").text()),
       },
-      u = B(n(".follow b").text()),
+      u = b(n(".follow b").text()),
       y = n(".detail-content p").text(),
       p = n("#nt_listchapter .chapter")
         .toArray()
         .map((P) => {
           const C = n(P),
-            { path: O, name: N } = S(C.find("a")),
-            X = { name: "comic chap", params: $({ sourceId: x.id }, E(O)) },
-            _t = parseInt(C.find("a").attr("data-id")) + "",
-            wt = G(C.next().text(), e) || null,
-            Pt = B(C.next().next().text().trim());
-          return { id: _t, route: X, name: D(N), updated_at: wt, views: Pt };
+            { path: M, name: N } = S(C.find("a")),
+            Q = { name: "comic chap", params: F({ sourceId: x.id }, k(M)) },
+            wt = parseInt(C.find("a").attr("data-id")) + "",
+            Pt = T(C.next().text(), e) || null,
+            Mt = b(C.next().next().text().trim());
+          return { id: wt, route: Q, name: D(N), updated_at: Pt, views: Mt };
         }),
       w = n("#nt_comments .comment-list .item")
         .toArray()
-        .map((P) => j(n, n(P), e)),
+        .map((P) => q(n, n(P), e)),
       U = parseInt(n(".comment-count").text()),
-      M =
+      O =
         parseInt(
-          (b =
+          (G =
             (K = n("#ctl00_mainContent_divPager > ul > li:nth-child(14) > a")
               .last()
               .attr("href")) == null
               ? void 0
               : K.slice(1)) != null
-            ? b
+            ? G
             : "1"
         ) || 1;
     return {
@@ -567,7 +565,7 @@ var __DEFINE_API__ = (function (l) {
       updated_at: o,
       image: s,
       author: h,
-      status: f,
+      status: g,
       genres: v,
       views: I,
       likes: null,
@@ -577,16 +575,16 @@ var __DEFINE_API__ = (function (l) {
       chapters: p,
       comments: w,
       comments_count: U,
-      comments_pages: M,
+      comments_pages: O,
     };
   }
-  async function gt(t) {
+  async function ft(t) {
     const { data: e, url: n } = await get({ url: `${_}/truyen-tranh/${t}` });
     if (tt(n)) throw new Error("not_found");
-    return ft(e, Date.now());
+    return gt(e, Date.now());
   }
   function At(t, e) {
-    var u, y, p, w, U, M, R, T;
+    var u, y, p, w, U, O, R, E;
     const n = parseDom(t),
       a = n("#ctl00_Head1 > meta:nth-child(12)").attr("content"),
       r = n("h1").text().split("-").slice(0, -1).join("-").trim(),
@@ -594,7 +592,7 @@ var __DEFINE_API__ = (function (l) {
         name: "comic",
         params: {
           sourceId: x.id,
-          comic: V(
+          comic: H(
             S(n("#ctl00_divCenter > div > div:nth-child(1) > div.top > h1 > a"))
               .path
           ),
@@ -616,8 +614,8 @@ var __DEFINE_API__ = (function (l) {
             : ""
         ) + "",
       m = (U = t.match(/gOpts\.cdn="([^"]+)"/)) == null ? void 0 : U[1],
-      h = (M = t.match(/gOpts\.cdn2="([^"]+)"/)) == null ? void 0 : M[1],
-      f = G(
+      h = (O = t.match(/gOpts\.cdn2="([^"]+)"/)) == null ? void 0 : O[1],
+      g = T(
         n("#ctl00_divCenter > div > div:nth-child(1) > div.top > i")
           .text()
           .trim()
@@ -627,31 +625,31 @@ var __DEFINE_API__ = (function (l) {
       v = n(".reading-detail img")
         .toArray()
         .map((K) => {
-          const b = n(K),
-            P = W(b.attr("src")),
-            C = b.attr("data-original"),
-            O = C ? W(C) : void 0,
-            N = b.attr("data-cdn"),
-            X = N ? W(N) : void 0;
+          const G = n(K),
+            P = W(G.attr("src")),
+            C = G.attr("data-original"),
+            M = C ? W(C) : void 0,
+            N = G.attr("data-cdn"),
+            Q = N ? W(N) : void 0;
           return {
-            src: P.includes("/logos/logo-nettruyen.png") ? O : P,
-            original: O,
-            cdn: X,
+            src: P.includes("/logos/logo-nettruyen.png") ? M : P,
+            original: M,
+            cdn: Q,
           };
         }),
       I = n("#nt_comments .comment-list .item")
         .toArray()
-        .map((K) => j(n, n(K), e)),
-      g = parseInt(n(".comment-count").text()),
+        .map((K) => q(n, n(K), e)),
+      f = parseInt(n(".comment-count").text()),
       A =
         parseInt(
-          (T =
+          (E =
             (R = n("#ctl00_mainContent_divPager > ul > li:nth-child(14) > a")
               .last()
               .attr("href")) == null
               ? void 0
               : R.slice(1)) != null
-            ? T
+            ? E
             : "1"
         ) || 1;
     return {
@@ -660,12 +658,12 @@ var __DEFINE_API__ = (function (l) {
       manga_id: o,
       path_manga: c,
       ep_id: s,
-      updated_at: f,
+      updated_at: g,
       pages: v,
       cdn: m,
       cdn2: h,
       comments: I,
-      comments_count: g,
+      comments_count: f,
       comments_pages: A,
     };
   }
@@ -677,11 +675,11 @@ var __DEFINE_API__ = (function (l) {
       const { data: c } = await get({
         url: `${_}/Comic/Services/ComicService.asmx/ProcessChapterList?comicId=${r.manga_id}`,
       });
-      return ot($({}, r), {
+      return ot(F({}, r), {
         chapters: JSON.parse(c).chapters.map((o) => {
           const s = {
             name: "comic chap",
-            params: $({ sourceId: x.id }, E(o.url)),
+            params: F({ sourceId: x.id }, k(o.url)),
           };
           return {
             id: o.chapterId + "",
@@ -699,7 +697,7 @@ var __DEFINE_API__ = (function (l) {
     const n = parseDom(t);
     return n(".item")
       .toArray()
-      .map((a) => j(n, n(a), e));
+      .map((a) => q(n, n(a), e));
   }
   async function xt(t, e, n = -1, a = 0, r, c) {
     const { data: o } = await get({
@@ -736,7 +734,7 @@ var __DEFINE_API__ = (function (l) {
       {
         name: "Server 1",
         has: () => !0,
-        parse: ({ pages: t }) => t.map((e) => k(e.src, L)),
+        parse: ({ pages: t }) => t.map((e) => B(e.src, L)),
       },
       {
         name: "Server 2",
@@ -748,9 +746,9 @@ var __DEFINE_API__ = (function (l) {
             return ((n = e.original) == null
               ? void 0
               : n.indexOf("focus-opensocial.googleusercontent")) !== -1
-              ? k(decodeURIComponent(e.original.split("&url", 2)[1]), L)
-              : k(
-                  `https://mp-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=604800&url=${encodeURIComponent(
+              ? B(decodeURIComponent(e.original.split("&url", 2)[1]), L)
+              : B(
+                  `https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&resize_h=0&rewriteMime=image%2F*&url=${encodeURIComponent(
                     e.original
                   )}`,
                   L
@@ -761,19 +759,21 @@ var __DEFINE_API__ = (function (l) {
       {
         name: "Server 3",
         has: (t) => t.cdn !== null,
-        parse: ({ pages: t }) => t.map((e) => k(e.cdn, L)),
+        parse: ({ pages: t }) => t.map((e) => B(e.cdn, L)),
       },
       {
         name: "Server 4",
         has: ({ pages: t, cdn: e, cdn2: n }) => t[0].cdn !== null && !!e && !!n,
         parse: ({ pages: t, cdn: e, cdn2: n }) =>
-          t.map((a) => k(a.cdn.replace(e, n), L)),
+          t.map((a) => B(a.cdn.replace(e, n), L)),
       },
-    ];
-  class Ct {
+    ],
+    Ct = ["manga", "anime", "japan"];
+  class _t {
     constructor() {
-      Z(this, "Rankings", at);
-      Z(this, "Servers", It);
+      J(this, "Rankings", at);
+      J(this, "Servers", It);
+      J(this, "autoFetchComicIsManga", !0);
     }
     async setup() {
       AppInfo.extension &&
@@ -784,7 +784,12 @@ var __DEFINE_API__ = (function (l) {
       return ut();
     }
     async getComic(e) {
-      return gt(e);
+      return ft(e);
+    }
+    async getModeReader(e, n, a) {
+      return a.genres.some((r) => Ct.includes(r.name.toLowerCase()))
+        ? { scrollingMode: !1, rightToLeft: !0 }
+        : {};
     }
     async getComicChapter(e, n, a) {
       const r = n.lastIndexOf("-i") >>> 0;
@@ -820,7 +825,7 @@ var __DEFINE_API__ = (function (l) {
     }
   }
   return (
-    st(Ct),
+    st(_t),
     (l.headersNettruyen = L),
     Object.defineProperty(l, Symbol.toStringTag, { value: "Module" }),
     l
