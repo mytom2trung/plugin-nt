@@ -2,7 +2,7 @@ var __DEFINE_PACKAGE__ = (function (t) {
   "use strict";
   const n = "nettruyen",
     v = "NetTruyen",
-    e = "0.1.12",
+    e = "0.1.13",
     o = "Plugin nguồn Net Truyen",
     a = "deptrai",
     M = "/",
