@@ -104,7 +104,7 @@ var __DEFINE_API__ = (function (l) {
   function it(t) {
     return Object.assign(self, { __DEFINE_PACKAGE__: t }), t;
   }
-  const _ = "https://www.nettruyenus.com";
+  const _ = "https://www.nettruyenbing.com";
   let V;
   function B(t, e) {
     return AppInfo.extension
