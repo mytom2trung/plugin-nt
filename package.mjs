@@ -1,11 +1,11 @@
 var __DEFINE_PACKAGE__ = (function (t) {
   "use strict";
   const n = "nettruyen",
-    v = "NetTruyen",
-    e = "0.1.13",
+    v = "Net Truyen",
+    e = "0.1.12",
     o = "Plugin nguồn Net Truyen",
     a = "deptrai",
-    M = "/",
+    M = "mailto:contact.animehay@gmail.com",
     c = [];
   for (let A = 0; A < 256; ++A) c.push((A + 256).toString(16).slice(1));
   typeof crypto < "u" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
@@ -25,7 +25,7 @@ var __DEFINE_PACKAGE__ = (function (t) {
     language: "vi",
     support: !0,
     supportGetMode: !0,
-    updatedAt: 1701791345917,
+    updatedAt: 1705169763115,
   });
   return (
     (t.meta = u),
