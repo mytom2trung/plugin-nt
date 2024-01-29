@@ -66,10 +66,10 @@ var __DEFINE_API__ = (function (l) {
         : new Date(
             t.replace(
               /^(\d{1,2}):(\d{1,2}) (\d{1,2})\/(\d{1,2})(\/\d{2,4})?$/,
-              (n, a, r, c, o, s) => {
+              (n, a, r, s, o, c) => {
                 var m;
-                return `${a}:${r}:00 ${o}/${c}/${
-                  (m = s == null ? void 0 : s.slice(1)) != null
+                return `${a}:${r}:00 ${o}/${s}/${
+                  (m = c == null ? void 0 : c.slice(1)) != null
                     ? m
                     : new Date(e).getFullYear()
                 }`;
@@ -81,9 +81,9 @@ var __DEFINE_API__ = (function (l) {
           ).getTime()
     );
   }
-  const ct = /^Chương|Chapter|Chap\.?\s+/i;
+  const st = /^Chương|Chapter|Chap\.?\s+/i;
   function D(t) {
-    return t.replace(ct, "").trim();
+    return t.replace(st, "").trim();
   }
   function tt(t, e = !0) {
     const { pathname: n, search: a } = new URL(t, "http://localhost");
@@ -98,13 +98,13 @@ var __DEFINE_API__ = (function (l) {
       ? `https:${t}`
       : t;
   }
-  function st(t) {
+  function ct(t) {
     return Object.assign(self, { __DEFINE_API__: t }), t;
   }
   function it(t) {
     return Object.assign(self, { __DEFINE_PACKAGE__: t }), t;
   }
-  const _ = "https://www.nettruyenclub.com/";
+  const _ = "https://www.nettruyenss.com";
   let V;
   function B(t, e) {
     return AppInfo.extension
@@ -125,15 +125,15 @@ var __DEFINE_API__ = (function (l) {
     name: "Net Truyen",
     favicon:
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAKpUExURa+WENi3ANKxAdOyAdS0BM+tALaqZv7////++LanVdKvANOzBNGxAdm4AK+VBM2yDf/iAf3bA//cA/7bBP/jANGzDNjY2/////n8/8a1Uv/cAP7cBv3aA//jA9CzAsqqEf/XBfrPB/vRBvzSCvfNAL2vavv9/8SwUv7RAPrRCvnPBv/YB82qBcqoFP/UCfrNC/zOC//VCtKvDtnY1MOtUP/OAPvODv/VC82oCcmlF//QDvnJD/rKD/vLEPvLE/fFAMCtZvj+/8SsUP7KAfnKEvjID//QEMylDMihG//LEvfEFPjFFPnGFPTCEvfFFP/LE9SqEdLV4cqxXPvEBPjFF//MFMuhEMeeH/7GGPXAGf/HGbOOGd+vGP3GHfa8B7mpdMCpYvvACfbBHP/HGsmdFMWaIvzBHfO7HvO7IP2/FLSYTLeaSfy+FfzBHs6iJp6AL//DGvO6H/O6Hv3CH8iZGcSWJvu8I/K2JPK3Jva1FsmqXr+7sOOnFPi8J/C0ItSfHPa5JPO2I/K2I/u9JcaVHcOSKvm3KPCxKfGyK/WxHsWhVeXt/8KbRfi0Ifa2KvGxKfKyKfCxKPq4KsWRIcGPLveyLe6tLu+uMPStI76aVf3//8e8pt+dHvSxMe6sLfCuLvCuLfizL8SOJcCMMfauMu2oMu6pNPKoKL6ZWvz//+3w9r6TSPWrLO2pM++pMu6pMu2oMfavM8KKKb+JNvOpN+qkN+umOu+jLr6ZYPf7/7+zoN2VJvCqPOulN+ylN/SrOcGHLsCEL/qoNPGiM/GjNfahKb2UXPf9/+jt87mJRPikLvKjM/qoNcaFKq2JWsKSUr+RU8CSVb6MSraefv79+8W6q7iISMGTVb6QU8OTU6iDUPX5/u/1/fD2/fj6/v///vz9/vD1/fP3/cP3IHIAAAABYktHRBcL1piPAAAAB3RJTUUH5wkSBwYgWO7tNAAAARtJREFUGNMBEAHv/gAAAQIDBAUGBwgHCQoLDA0OAA8QERITFBUWFxgZGhscHR4AHyAhIiIjJCUHJicoKSorLAAtLi8wMC8xMjMXNDU2Lzc4ADk6Ozw8PT4/QEFCQ0RFRkcASElKS0xNTk9QUVJTVEpVVgBXWFlZWltcXV5fYGFiWWNkAGVmZ2hpamtsbW5vcHFyc3QAdXZ3eHl6e3x9fn+AgYKDhACFhoeIiYqLjI2Ijo+QkZKTAJSVlpeYmZqbnJ2en6CeoaIAo6SlpqeoqaqrrK2ur7CxsgCztLW2t7i5F7q7vL2+tb/AAMHCw8TFxscXyMnKxMvDzM0Azs/Q0dLTB9QX1dbX0NjZ2gDb3N3d3N4XF9/g3d3d3eHinyRwGnuYBAsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDktMThUMDc6MDY6MzIrMDA6MDB2b2K2AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA5LTE4VDA3OjA2OjMyKzAwOjAwBzLaCgAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wOS0xOFQwNzowNjozMiswMDowMFAn+9UAAAAASUVORK5CYII=",
-    version: "0.1.12",
+    version: "0.1.24",
     description: "Plugin nguồn Net Truyen",
-    author: "animeforyou",
-    homepage: "/",
+    author: "deptrai",
+    homepage: "mailto:contact.animehay@gmail.com",
     isNSFW: !1,
     language: "vi",
     support: !0,
     supportGetMode: !0,
-    updatedAt: 1705169763095,
+    updatedAt: 1706357365404,
   });
   function z(t) {
     return Object.fromEntries(
@@ -161,17 +161,17 @@ var __DEFINE_API__ = (function (l) {
   }
   function H(t) {
     const e = t.indexOf("/truyen-tranh/") + 14;
-    return t.slice(e, t.indexOf("?", e) >>> 0).replace(/-\d{4,}$/, "");
+    return t.slice(e, t.indexOf("?", e) >>> 0);
   }
   function k(t) {
     const e = t.indexOf("/truyen-tranh/") + 14,
-      n = t.slice(e, t.indexOf("/", e)).replace(/-\d{4,}$/, ""),
+      n = t.slice(e, t.indexOf("/", e)),
       a = t
         .slice(
           e + n.length + 1,
-          t.indexOf("/", t.indexOf("/", e + n.length + 1) + 1) >>> 0
+          t.indexOf("/", (t.indexOf("/", e + n.length + 1) >>> 0) + 1) >>> 0
         )
-        .replace(/^chap-/i, "")
+        .replace(/^\w+-/i, "")
         .replace(/\//g, "-i");
     return { comic: n, chap: a };
   }
@@ -188,9 +188,9 @@ var __DEFINE_API__ = (function (l) {
         name: "comic",
         params: { sourceId: x.id, comic: H(i(e.find("a").attr("href"))) },
       },
-      c = e.find("h3").text().trim(),
+      s = e.find("h3").text().trim(),
       o = e.find(".message_main p"),
-      s = j(t, o, "Tên khác:"),
+      c = j(t, o, "Tên khác:"),
       m = j(t, o, "Thể loại:")
         .split(",")
         .map((p) => p.trim())
@@ -228,8 +228,8 @@ var __DEFINE_API__ = (function (l) {
     return {
       image: a,
       route: r,
-      name: c,
-      othername: s,
+      name: s,
+      othername: c,
       tags: m,
       status: h,
       author: g,
@@ -248,7 +248,7 @@ var __DEFINE_API__ = (function (l) {
         .text()
         .trim(),
       r = n("#ctl00_mainContent_ctl00_divDescription").text(),
-      c = {
+      s = {
         type: "Thể loại",
         select: n("#ctl00_divRight > div > div > ul > li > a")
           .toArray()
@@ -275,7 +275,7 @@ var __DEFINE_API__ = (function (l) {
             return { name: u, value: p };
           }),
       },
-      s = {
+      c = {
         type: "Sắp xếp",
         key: "sort",
         items: n("#ctl00_mainContent_ctl00_divSort a")
@@ -286,7 +286,7 @@ var __DEFINE_API__ = (function (l) {
             return { name: u, value: p };
           }),
       },
-      m = [c, o, s],
+      m = [s, o, c],
       h = n("#ctl00_divCenter > div.Module.Module-170 .item, .items .item")
         .toArray()
         .map((A) => Y(n, n(A), e)),
@@ -317,7 +317,7 @@ var __DEFINE_API__ = (function (l) {
     t.endsWith("/") && (t = t.slice(0, -1));
     const a = new URL(t, "http://localhost");
     a.searchParams.set("page", e + "");
-    for (const c in n) a.searchParams.set(c, n[c] + "");
+    for (const s in n) a.searchParams.set(s, n[s] + "");
     const { data: r } = await get({
       url: `${_}/${a.pathname}?${a.searchParams + ""}`,
       method: void 0,
@@ -356,28 +356,28 @@ var __DEFINE_API__ = (function (l) {
       r = n("#ctl00_divCenter .item")
         .toArray()
         .map((o) => Y(n, n(o), e)),
-      c = n("#topMonth li")
+      s = n("#topMonth li")
         .toArray()
         .map((o) => {
-          const s = n(o),
-            m = $(s.find("img")),
+          const c = n(o),
+            m = $(c.find("img")),
             h = {
               name: "comic",
-              params: { sourceId: x.id, comic: H(i(s.find("a").attr("href"))) },
+              params: { sourceId: x.id, comic: H(i(c.find("a").attr("href"))) },
             },
-            g = s.find("h3").text().trim(),
-            { path: v, name: I } = S(s.find(".chapter a")),
+            g = c.find("h3").text().trim(),
+            { path: v, name: I } = S(c.find(".chapter a")),
             f = {
               route: {
                 name: "comic chap",
                 params: F({ sourceId: x.id }, k(v)),
               },
               name: D(I),
-              updated_at: b(s.find(".chapter .view").text().trim()),
+              updated_at: b(c.find(".chapter .view").text().trim()),
             };
           return { image: m, route: h, name: g, last_chapter: f };
         });
-    return { recommend: a, last_update: r, top: c };
+    return { recommend: a, last_update: r, top: s };
   }
   async function ut() {
     const [t, e] = await Promise.all([
@@ -402,12 +402,12 @@ var __DEFINE_API__ = (function (l) {
             name: "comic",
             params: { sourceId: x.id, comic: H(i(a.find("a").attr("href"))) },
           },
-          c = a.find("h3").text().trim(),
+          s = a.find("h3").text().trim(),
           o = $(a.find("img")),
-          s = a.find("h4 i"),
-          m = D(s.first().text()),
-          h = s.length > 2 ? s.eq(1).text().trim() : "",
-          g = s
+          c = a.find("h4 i"),
+          m = D(c.first().text()),
+          h = c.length > 2 ? c.eq(1).text().trim() : "",
+          g = c
             .last()
             .text()
             .split(",")
@@ -415,7 +415,7 @@ var __DEFINE_API__ = (function (l) {
             .filter(Boolean);
         return {
           route: r,
-          name: c,
+          name: s,
           image: o,
           last_chapter: m,
           othername: h,
@@ -447,7 +447,7 @@ var __DEFINE_API__ = (function (l) {
             : v.match(/width:\s*(\d+)/)) == null
           ? void 0
           : I[1],
-      c = {
+      s = {
         avatar: $(e.find(".avatar img")),
         name: e.find(".authorname").text().trim(),
         level: {
@@ -461,7 +461,7 @@ var __DEFINE_API__ = (function (l) {
       u.attr("src", $(u));
     });
     const o = e.find(".comment-content").html(),
-      s = parseInt(e.find(".vote-up-count").text()),
+      c = parseInt(e.find(".vote-up-count").text()),
       m = parseInt(e.find(".vote-down-count").text()),
       h = T(e.find("abbr:eq(0)").text(), n),
       g = e
@@ -470,9 +470,9 @@ var __DEFINE_API__ = (function (l) {
         .map((f) => q(t, e.find(f), n));
     return {
       id: a,
-      author: c,
+      author: s,
       content: o,
-      like: s,
+      like: c,
       dislike: m,
       created_at: h,
       repiles: g,
@@ -483,14 +483,16 @@ var __DEFINE_API__ = (function (l) {
     const n = parseDom(t),
       a = n("#item-detail"),
       r = a.find("h1").text().trim(),
-      c = parseInt(
-        (E = (R = t.match(/gOpts\.comicId=(\d+)/)) == null ? void 0 : R[1]) !=
-          null
+      s = parseInt(
+        (E =
+          (R = t.match(/gOpts\.comicId\s*=\s*'?(\d+)'?\s*/)) == null
+            ? void 0
+            : R[1]) != null
           ? E
           : ""
       ),
       o = T(a.find("time").text().trim().slice(16, -1), e),
-      s = $(
+      c = $(
         n("#item-detail > div.detail-info > div > div.col-xs-4.col-image > img")
       ),
       m = a.find(".othername p:not(.name)").text().trim(),
@@ -561,9 +563,9 @@ var __DEFINE_API__ = (function (l) {
     return {
       name: r,
       othername: m,
-      manga_id: c + "",
+      manga_id: s + "",
       updated_at: o,
-      image: s,
+      image: c,
       author: h,
       status: g,
       genres: v,
@@ -588,7 +590,7 @@ var __DEFINE_API__ = (function (l) {
     const n = parseDom(t),
       a = n("#ctl00_Head1 > meta:nth-child(12)").attr("content"),
       r = n("h1").text().split("-").slice(0, -1).join("-").trim(),
-      c = {
+      s = {
         name: "comic",
         params: {
           sourceId: x.id,
@@ -600,16 +602,19 @@ var __DEFINE_API__ = (function (l) {
       },
       o =
         parseInt(
-          (y = (u = t.match(/gOpts\.comicId=(\d+)/)) == null ? void 0 : u[1]) !=
-            null
+          (y =
+            (u = t.match(/gOpts\.comicId\s*=\s*'?(\d+)'?\s*/)) == null
+              ? void 0
+              : u[1]) != null
             ? y
             : ""
         ) + "",
-      s =
+      c =
         parseInt(
           (w =
-            (p = t.match(/gOpts\.chapterId=(\d+)/)) == null ? void 0 : p[1]) !=
-            null
+            (p = t.match(/gOpts\.chapterId\s*=\s*'?(\d+)'?\s*/)) == null
+              ? void 0
+              : p[1]) != null
             ? w
             : ""
         ) + "",
@@ -656,8 +661,8 @@ var __DEFINE_API__ = (function (l) {
       name: r,
       image: a,
       manga_id: o,
-      path_manga: c,
-      ep_id: s,
+      path_manga: s,
+      ep_id: c,
       updated_at: g,
       pages: v,
       cdn: m,
@@ -672,19 +677,19 @@ var __DEFINE_API__ = (function (l) {
     if (tt(a)) throw new Error("not_found");
     const r = await At(n, Date.now());
     if (!e) {
-      const { data: c } = await get({
+      const { data: s } = await get({
         url: `${_}/Comic/Services/ComicService.asmx/ProcessChapterList?comicId=${r.manga_id}`,
       });
       return ot(F({}, r), {
-        chapters: JSON.parse(c).chapters.map((o) => {
-          const s = {
+        chapters: JSON.parse(s).chapters.map((o) => {
+          const c = {
             name: "comic chap",
             params: F({ sourceId: x.id }, k(o.url)),
           };
           return {
             id: o.chapterId + "",
             name: D(o.name),
-            route: s,
+            route: c,
             updated_at: null,
             views: null,
           };
@@ -699,15 +704,15 @@ var __DEFINE_API__ = (function (l) {
       .toArray()
       .map((a) => q(n, n(a), e));
   }
-  async function xt(t, e, n = -1, a = 0, r, c) {
+  async function xt(t, e, n = -1, a = 0, r, s) {
     const { data: o } = await get({
         url: `https://www.nettruyenmax.com/Comic/Services/CommentService.asmx/List?comicId=${t}&orderBy=${
           e ? 5 : 0
-        }&chapterId=${n}&parentId=${a}&pageNumber=${r}&token=${c}`,
+        }&chapterId=${n}&parentId=${a}&pageNumber=${r}&token=${s}`,
       }),
-      { commentCount: s, pager: m, response: h } = JSON.parse(o);
+      { commentCount: c, pager: m, response: h } = JSON.parse(o);
     return {
-      comments_count: parseInt(s),
+      comments_count: parseInt(c),
       comments_pages: parseInt(m.slice(m.indexOf('a href="#') >>> 0, 2)),
       comments: await yt(h, Date.now()),
     };
@@ -795,15 +800,15 @@ var __DEFINE_API__ = (function (l) {
       const r = n.lastIndexOf("-i") >>> 0;
       return vt(
         e.replace(/-\d+$/, "") +
-          "/chap-" +
+          "/chapter-" +
           n.slice(0, r) +
           "/" +
           n.slice(r + 2),
         a
       );
     }
-    async getComicComments(e, n, a = -1, r = 0, c, o) {
-      return xt(e, n, a, r, c, o);
+    async getComicComments(e, n, a = -1, r = 0, s, o) {
+      return xt(e, n, a, r, s, o);
     }
     async getListChapters(e) {
       return mt(e);
@@ -815,8 +820,8 @@ var __DEFINE_API__ = (function (l) {
       return ht(e, n);
     }
     async getRanking(e, n, a) {
-      var c;
-      const r = (c = at.find((o) => o.value === e)) == null ? void 0 : c.match;
+      var s;
+      const r = (s = at.find((o) => o.value === e)) == null ? void 0 : s.match;
       if (!r) throw new Error("not_found");
       return nt(r, n, a);
     }
@@ -825,7 +830,7 @@ var __DEFINE_API__ = (function (l) {
     }
   }
   return (
-    st(_t),
+    ct(_t),
     (l.headersNettruyen = L),
     Object.defineProperty(l, Symbol.toStringTag, { value: "Module" }),
     l

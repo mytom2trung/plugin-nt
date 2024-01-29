@@ -2,7 +2,7 @@ var __DEFINE_PACKAGE__ = (function (t) {
   "use strict";
   const n = "nettruyen",
     v = "Net Truyen",
-    e = "0.1.12",
+    e = "0.1.24",
     o = "Plugin nguồn Net Truyen",
     a = "deptrai",
     M = "mailto:contact.animehay@gmail.com",
@@ -25,7 +25,7 @@ var __DEFINE_PACKAGE__ = (function (t) {
     language: "vi",
     support: !0,
     supportGetMode: !0,
-    updatedAt: 1705169763115,
+    updatedAt: 1706357365372,
   });
   return (
     (t.meta = u),
